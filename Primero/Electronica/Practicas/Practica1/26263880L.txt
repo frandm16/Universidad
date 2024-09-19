@@ -1,0 +1,17 @@
+       --- Operating Point ---
+
+V(n002):	 -7.66667	 voltage
+V(n001):	 1	 voltage
+V(n003):	 -4.44444	 voltage
+V(n004):	 -2.44444	 voltage
+V(n005):	 5.55556	 voltage
+V(n006):	 0	 voltage
+I(F1):	 -0.00611111	 device_current
+I(I1):	 0.002	 device_current
+I(R1):	 -0.00288889	 device_current
+I(R2):	 0.00322222	 device_current
+I(R3):	 0.002	 device_current
+I(R4):	 0.00122222	 device_current
+I(V1):	 0.00322222	 device_current
+I(V2):	 -0.00288889	 device_current
+I(Ia):	 -0.00122222	 device_current
