@@ -1,0 +1,36 @@
+5)
+/*x{3,4,6,8,9},y{6,7,8,3}*/
+
+((x>=3&&x<=9)&&(x!=5)&&(x!=7))&&((y>=6)&&(y<=8)||y==3)
+
+
+6)
+Ni x ni y sean mayores de 10.
+
+(x<=10)&&(y<=10)
+
+
+7)
+x no sea múltiplo de y.
+
+(x%y)!=0
+
+
+8)
+c es una letra mayúscula.
+
+(c>64)&&(c<91)
+(c>=A)&&(c<=Z)
+
+
+9)
+c es una letra
+
+(c>=A)&&(c<=Z)||(c>=a)&&(c<=z)
+
+
+10)
+c es un caracter alfanumerocio
+
+
+(c>='0')&&(c<='9')
