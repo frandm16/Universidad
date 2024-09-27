@@ -1,0 +1,6 @@
+1 Parcial:
+-Kirchoff
+-Sistemas combinacionales(analisis o sintesis)
+
+2 Parcial:
+-Sistemas secuenciales(analisis o sintesis)
