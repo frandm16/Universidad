@@ -1,3 +1,20 @@
+
+/*Programa que lea de teclado tres números enteros (día, mes y año), si
+la fecha es correcta mostrará el mensaje “Fecha Correcta”, en otro caso
+mostrará “Error”, considerando que:
+1) Cualquier valor del año es correcto.
+2) Sólo son correctos los meses desde el número 1 hasta el número 12, ambos
+inclusive, de tal forma que el número 1 corresponde al mes de Enero, el número 2
+al mes de Febrero, y así sucesivamente hasta el número 12 que corresponde al
+mes de Diciembre.
+3) El número correspondiente al día debe ser mayor que cero, y menor o igual al
+número de días del mes en que se encuentra, teniendo en cuenta si el año en que
+se encuentra es bisiesto o no.
+a. Los meses Enero, Marzo, Mayo, Julio, Agosto, Octubre, y Diciembre tienen 31 días.
+b. Los meses Abril, Junio, Septiembre y Noviembre tienen 30 días.
+c. El mes Febrero tiene 29 días si el año en que se encuentra es bisiesto, y en otro caso tiene 28 días.
+d. Un año es bisiesto si es divisible entre 400, o si es divisible entre 4 y no es divisible entre 100*/
+
 #include <iostream>
 
 using namespace std;
@@ -36,6 +53,7 @@ int main()
             {
                 cout << "Fecha correcta" << endl;
             }
+            break;
         case 2:
             if ((anyo % 400 == 0) || (anyo % 4 == 0) && (anyo % 100 != 0))
             {
@@ -59,6 +77,7 @@ int main()
                     cout << "Fecha incorrecta" << endl;
                 }
             }
+            break;
         default:
             break;
         }
