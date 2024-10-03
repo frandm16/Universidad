@@ -1,0 +1,80 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 24.08.0_DevelopmentSnapshot ] */
+/* [wxMaxima: comment start ]
+312z+42y=834
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+gcd(312,42);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+remainder(834,6);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+TIene solucion
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+bezout:firstn(gcdex(312,42),2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+quotient(834,6);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+solp:bezout*139;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Solucion general:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+sol: solp + ([42,-312]/6)*k;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Solucion: x=7k-278 , y=2085-52k
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Si nos pidiesen soluciones positivas:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+load(fourier_elim);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+fourier_elim([7*k-278>=0],[k]),float;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+fourier_elim([2085-52*k>=0],[k]),float;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+sol1: solp + ([42,-312]/6)*40;
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 24.08.0_DevelopmentSnapshot"$
