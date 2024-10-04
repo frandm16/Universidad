@@ -1,7 +1,7 @@
 /* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
 /* [ Created with wxMaxima version 24.08.0_DevelopmentSnapshot ] */
 /* [wxMaxima: comment start ]
-1.Para codificar un mensaje, DIoni y Angeles del grupo Camela utilizan el sistema RSA con p=37, q=43 y clave publica e= 13 para Dioni
+1.Para codificar un mensaje, DIoni y Angeles del grupo Camela utilizan el sistema RSA con p=37, q=43 y clave publica e= 13 para Dioni(4pts)
    [wxMaxima: comment end   ] */
 
 
@@ -66,7 +66,7 @@ El mensaje que le llega es OLE
 
 
 /* [wxMaxima: comment start ]
-2.Simplifique primero el sistema  y despues compruebe si tieen solucion y, en caso afirmativo, resuelvalo
+2.Simplifique primero el sistema  y despues compruebe si tieen solucion y, en caso afirmativo, resuelvalo(3pts)
    [wxMaxima: comment end   ] */
 
 
@@ -131,7 +131,7 @@ No tiene solucion, ya que mcd(6,36)=6 no divide a 5(8-3)
 
 
 /* [wxMaxima: comment start ]
-3. Calcula las posibles cifras de x para que el numero 9876x4321 sea mutiplo de 19
+3. Calcula las posibles cifras de x para que el numero 9876x4321 sea mutiplo de 19(3pts)
    [wxMaxima: comment end   ] */
 
 
