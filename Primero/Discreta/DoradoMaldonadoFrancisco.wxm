@@ -1,0 +1,175 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 24.08.0_DevelopmentSnapshot ] */
+/* [wxMaxima: comment start ]
+1.Para codificar un mensaje, DIoni y Angeles del grupo Camela utilizan el sistema RSA con p=37, q=43 y clave publica e= 13 para Dioni
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+a)Probar que la clave publica es valida:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+m:37*43;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+totient(1591);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+gcd(13,1512);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+La clave publica es correcta, ya que mcd(e,phi(m))=1
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+b)Cuantas claves publicas correctas podria elegir.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Podria elegir las que quiera sabiendo que tiene que ser primo(distinta de sus factores 2, 3, 7) y menores que 1512
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+c)Averigua la clave privada
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+inv_mod(13,1512);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+d)Calcula el mensaje que recibe
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+power_mod(280,349,1591);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+El mensaje que le llega es OLE
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+2.Simplifique primero el sistema  y despues compruebe si tieen solucion y, en caso afirmativo, resuelvalo
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Simplificamos pasando los numeros al modulo correspondiente, y haciendo los calculos:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+mod(5^17,6);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+inv_mod(5,6);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+mod(2^7,36);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+inv_mod(7,36);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+mod(20*31,36);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Compruebo si tiene solucion:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+gcd(6,5);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+quotient(1,1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+gcd(6,36);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+quotient(5,6);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+No tiene solucion, ya que mcd(6,36)=6 no divide a 5(8-3)
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+3. Calcula las posibles cifras de x para que el numero 9876x4321 sea mutiplo de 19
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Ese numero es igual que 987604321 + x*10^4,entonces resolvemos la congruencia:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+mod(-987604321,19);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+inv_mod(10^4,19);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+mod(4*16,19);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Para x=7, 9876x4321 es multiplo de 19 ya que mod(987674321,19)=0
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Comprobacion:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+mod(987674321,19);
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 24.08.0_DevelopmentSnapshot"$
