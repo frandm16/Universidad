@@ -40,6 +40,11 @@ Podria elegir las que quiera sabiendo que tiene que ser primo(distinta de sus fa
    [wxMaxima: comment end   ] */
 
 
+/* [wxMaxima: input   start ] */
+totient(1512);
+/* [wxMaxima: input   end   ] */
+
+
 /* [wxMaxima: comment start ]
 c)Averigua la clave privada
    [wxMaxima: comment end   ] */
