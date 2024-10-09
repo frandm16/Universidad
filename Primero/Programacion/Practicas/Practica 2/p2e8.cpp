@@ -10,8 +10,8 @@ int main(){
 
     if(num>=1000 && num<=9999){
         provincia=num/1000;
-        numoperacion=(num-provincia*1000)/10;
-        dcontrol=(num-provincia*1000)-(numoperacion*10);
+        numoperacion=(num%1000)/10;
+        dcontrol=(num%10);
         comprobacion=numoperacion%provincia;
 
         if(dcontrol==comprobacion){
