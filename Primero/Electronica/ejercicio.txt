@@ -1,0 +1,1 @@
+Diseñar un circutio que recibe como entrada un numero bcd y coloca un 1 en la salida si el numero es potencia de 3 y coloca un 0 en caso contrario.

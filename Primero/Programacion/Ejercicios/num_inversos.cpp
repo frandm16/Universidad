@@ -9,7 +9,6 @@ using namespace std;
 
 int main()
 {
-
     int num;
     cout << "Introduzca un numero: ";
     cin >> num;
@@ -17,7 +16,7 @@ int main()
     while (num >= 1)
     {
 
-        num = num - 1;
+        num -= 1;
         cout << num << " ";
     }
 }
