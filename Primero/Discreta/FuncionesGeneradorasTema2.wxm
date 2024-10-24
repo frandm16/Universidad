@@ -1,0 +1,185 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 24.08.0_DevelopmentSnapshot ] */
+/* [wxMaxima: comment start ]
+¿Cuantas soluciones enteras tiene la ecuacion x1+x2+x3+x4 = 25, donde xi>=0, para todo 1<=i<=4?
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+gen: sum(x^n,n,0,inf)^4;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+El 35 es el que queramos siempre que sea >=25(de manera manual)
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+tay: taylor(gen,x,0,35);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Esta es la forma automatica, siendo 25 el coeficiente que buscamos
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+coeff(tay,x,25);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: heading5 start ]
+Tenemos que repartir 12 regalos iguales entre 3 personas. ¿De cuántas
+formas podemos hacerlo de manera que la primera persona reciba al
+menos cuatro y que las otras dos personas reciban al menos dos cada una,
+pero que la tercera persona no reciba más de cinco?
+   [wxMaxima: heading5 end   ] */
+
+
+/* [wxMaxima: comment start ]
+Planteamiento: x1+x2+x3=12, x1>=4, x2>=2, 2<=x3<=5. Sol a12
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Para x1
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+gen1: sum(x^n,n,4,inf);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Para x2
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+gen2: sum(x^n,n,2,inf);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Para x3
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+gen3:sum(x^n,n,2,5);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Esta es la funcion generatriz
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+gentotal: gen1*gen2*gen3;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+tay2: taylor(gentotal,x,0,13);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+coeff(tay2,x,12);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Este es el coeficiente a12
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: heading5 start ]
+Se dispone de un número suficiente de bolas blancas y negras
+indistinguibles entre ellas. Suponiendo que se quieren reunir un total de
+veinticinco donde haya de ambos colores, ¿de cuántas formas podemos
+hacerlo de forma que tengamos un número par de blancas y un número
+impar de negras? Usar funciones generatrices.
+   [wxMaxima: heading5 end   ] */
+
+
+/* [wxMaxima: input   start ] */
+genblancas: sum(x^(2*n),n,1,inf);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Se empieza por 1 ya que en el enunciado pone que tiene que haber de los dos colores y si ponemos que empiece en 0, no existiria bola blanca
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+gennegras: sum(x^(2*n+1),n,0,inf);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+genbolas:genblancas*gennegras;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+tay3: taylor(genbolas,x,0,26);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+coeff(tay3,x,25);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: heading5 start ]
+Si tenemos un número ilimitado de caramelos de colores rojo, verde,
+blanco y negro, ¿de cuántas formas podemos seleccionar 24 caramelos de
+modo que tengamos un número par de caramelos verdes y blancos y, al
+menos, seis negros?
+   [wxMaxima: heading5 end   ] */
+
+
+/* [wxMaxima: input   start ] */
+genrojo:sum(x^n,n,0,inf);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+genverde:sum(x^(2*n),n,1,inf);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+genblanco:sum(x^(2*n),n,1,inf);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+gennegro:sum(x^n,n,6,inf);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+gentotal2: genrojo*genverde*genblanco*gennegro;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+tay4: taylor(gentotal2,x,0,30);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+coeff(tay4,x,24);
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 24.08.0_DevelopmentSnapshot"$
