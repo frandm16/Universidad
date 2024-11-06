@@ -1,0 +1,62 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 24.08.0_DevelopmentSnapshot ] */
+/* [wxMaxima: comment start ]
+Francisco Dorado Maldonado 
+DNI: 26263880-L
+Ingenieria Informatica Grupo A
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: title   start ]
+Ejercicio 1
+   [wxMaxima: title   end   ] */
+
+
+/* [wxMaxima: comment start ]
+¿De cuantas maneras se puede expresar el numero natural 222, como suma de un multiplo de 5 mas un numero par mas un numero menor que 5 y otro menor que 2 siendo todos ellos no negativos?
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+ec1:sum(x^(5*n),n,0,inf)*sum(x^(2*n),n,0,inf)*sum(x^n,n,0,5)*sum(x^n,n,0,2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+tay1: taylor(ec1,x,0,223)$;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+sol:coeff(tay1,x,222);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Se puede expresar de 400 maneras.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: title   start ]
+Ejercicio 2
+   [wxMaxima: title   end   ] */
+
+
+/* [wxMaxima: comment start ]
+¿De cuantas formas puede factorizarse 13.911.888.445 en cuatro factores siendo cada uno de ellos mayor que 1?
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: title   start ]
+Ejercicio 3
+   [wxMaxima: title   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Resuelva la siguiente ecuacion de recurrencia:
+   [wxMaxima: comment end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 24.08.0_DevelopmentSnapshot"$
