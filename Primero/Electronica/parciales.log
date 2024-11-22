@@ -1,0 +1,4 @@
+LTspice 24.0.12 for Windows
+Circuit: 1 Parcial:
+Start Time: Fri Nov 22 10:27:48 2024
+Fatal Error: Unknown SPICE device type "-" in "-kirchoff"
