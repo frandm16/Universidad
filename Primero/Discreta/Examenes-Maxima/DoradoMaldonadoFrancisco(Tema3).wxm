@@ -1,0 +1,97 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 24.08.0_DevelopmentSnapshot ] */
+/* [wxMaxima: comment start ]
+Francisco Dorado Maldonado
+Ing Informatica GRUPO A
+DNI: 26263880L
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+load(graphs);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+a) Defina y represente el grafo que modela el plan
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+m1: matrix([0,1,0,1,1,1],[1,0,0,1,1,1],[0,0,0,1,1,1],[1,1,1,0,1,0],[1,1,1,1,0,0],[1,1,1,0,0,0]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+g1: from_adjacency_matrix(m1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+draw_graph(g1,show_id=true);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+b) 
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+c)
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+No es posible ya que no es un grafo plano.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+is_planar(g1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+mn1: minimum_spanning_tree(g1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+draw_graph(mn1, show_id=true);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+m1: shortest_weighted_path(2,3,g1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+chromatic_number(g1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+g)
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+vertex_coloring(g1);
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 24.08.0_DevelopmentSnapshot"$
