@@ -1,5 +1,5 @@
 /* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
-/* [ Created with wxMaxima version 24.08.0_DevelopmentSnapshot ] */
+/* [ Created with wxMaxima version 24.11.0_DevelopmentSnapshot ] */
 /* [wxMaxima: comment start ]
 Francisco Dorado Maldonado 
 DNI: 26263880-L
@@ -57,6 +57,51 @@ Resuelva la siguiente ecuacion de recurrencia:
    [wxMaxima: comment end   ] */
 
 
+/* [wxMaxima: input   start ] */
+eccar: (x^2-4*x+3)*(x-1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+solve(eccar,x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+sol: A*3^n+(B*n+C)*(1)^n;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+ec1:ev(sol,n=0)=3000;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+ec2:ev(sol,n=1)=3300;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+a1=4*3300-3*3000+200;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+ec3:ev(sol,n=2)=4400;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+solve([ec1,ec2,ec3],[A,B,C]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+first(%);
+/* [wxMaxima: input   end   ] */
+
+
 
 /* Old versions of Maxima abort on loading files that end in a comment. */
-"Created with wxMaxima 24.08.0_DevelopmentSnapshot"$
+"Created with wxMaxima 24.11.0_DevelopmentSnapshot"$
