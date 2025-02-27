@@ -3,7 +3,7 @@ package org.iis.frandm;
 /** Class including some statistics methods for arrays of numbers */
 public class Statistics {
 
-  public double maximumValue(double[] arrayOfNumbers,) {
+  public double maximumValue(double[] arrayOfNumbers) {
     if (arrayOfNumbers.length == 0) {
       throw new IllegalArgumentException("Array must not be empty");
     }
