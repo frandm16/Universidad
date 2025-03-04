@@ -1,0 +1,49 @@
+
+  111  cd Documentos/calculator
+  112  git init
+  113  lsa
+  114  git status
+  115  git branch
+  116  cd Documentos/calculator
+  117  git branch
+  118  git branch -m
+  119  cd Documentos/calculator
+  120  git add pom.xml README.md
+  121  git status
+  122  git commit -am "Anadir archivos pom.xml y README.md"
+  123  git add src/
+  124  git commit -am "Anadir la carpeta src"
+  125  git log
+  126  git branch develop
+  127  git branch
+  128  git checkout develop
+  129  git branch
+  130  git status
+  131  git commit -am "Actualizo el archivo Calculator.java con un nuevo metodo"
+  132  git log
+  134  git checkout main
+  135  git log
+  136  git checkout develop
+  137  git checkout main
+  138  git merge develop
+  139  git checkout develop
+  140  git commit -am "Cambio del metodo divide en la rama develop"
+  141  git checkout main
+  142  git commit -am "Cambio del metodo divide en la rama main"
+  143  git checkout develop
+  144  git merge main
+  145  git status
+  146  git commit -am "Ya se ha arreglado el conflicto"
+  147  git checkout main
+  148  git merge develop
+  149  git log
+  150  git status
+  151  mvn compile
+  152  git status
+  155  cat .gitignore
+  156  git add .gitignore
+  157  git commit -am "Anado el .gitignore"
+  158  git status
+  159  git log > main.txt
+  160  git checkout develop
+  161  git log >develop.txt

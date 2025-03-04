@@ -1,0 +1,42 @@
+commit 144a6c9aa06c144516f0e504db0d128ff438094c
+Author: frandm16 <dmfran16@gmail.com>
+Date:   Tue Mar 4 10:15:30 2025 +0100
+
+    Anado el .gitignore
+
+commit bffc57f12d9af01471052e29fb13180b519ce5f7
+Merge: 7119973 e3871bb
+Author: frandm16 <dmfran16@gmail.com>
+Date:   Tue Mar 4 10:06:23 2025 +0100
+
+    Ya se ha arreglado el conflicto
+
+commit e3871bb6a752434a055f01bc0d7228a7e96f4ade
+Author: frandm16 <dmfran16@gmail.com>
+Date:   Tue Mar 4 09:42:37 2025 +0100
+
+    Cambio del metodo divide en la rama main
+
+commit 711997378f66e997877cde4d40dd865ebeecdcb1
+Author: frandm16 <dmfran16@gmail.com>
+Date:   Tue Mar 4 09:41:41 2025 +0100
+
+    Cambio del metodo divide en la rama develop
+
+commit e2ed97481ec7f89a6cb69dfd52e6cbd9a84b1bb3
+Author: frandm16 <dmfran16@gmail.com>
+Date:   Tue Mar 4 09:29:50 2025 +0100
+
+    Actualizo el archivo Calculator.java con un nuevo metodo
+
+commit 98524bc613c4649338a44df135d5a501117f361c
+Author: frandm16 <dmfran16@gmail.com>
+Date:   Tue Mar 4 09:18:52 2025 +0100
+
+    Anadir la carpeta src
+
+commit 9df537b00036ad50b84af794977c0ad6028446c4
+Author: frandm16 <dmfran16@gmail.com>
+Date:   Tue Mar 4 09:16:48 2025 +0100
+
+    Anadir archivos pom.xml y README.md
