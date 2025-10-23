@@ -2,6 +2,9 @@
 * @brief Longitud máxima del nombre de una tarea (en caracteres).
 */
 #include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
 #define MAX_NAME_LEN 20
 
 /** Estructura que representa un paciente. */
@@ -53,7 +56,12 @@ return ptrCola;
 NULL si no ha sido inicializada, esto lo debe garantizar el que usa esta
 librería.
 */
-unsigned longitudCola(const struct Cola* ptrCola);
+unsigned longitudCola(const struct Cola* ptrCola){
+    if(ptrCola==NULL){
+        return 0;
+    }
+    return ptrCola->tam;
+};
 
 /**
 * @brief Añade el paciente cuyos datos se proporcionan al final de la
@@ -64,10 +72,44 @@ longitud es superior a MAX_NAME_LEN, no se encola y se devuelve false.
 * @return true si se ha podido encolar, false en otro caso, por ejemplo
 cola sin inicializar o parámetros incorrectos.
 */
-bool encolar(struct Cola* ptrCola, char * nombre, unsigned edad);
+bool encolar(struct Cola* ptrCola, char * nombre, unsigned edad){
+    if(ptrCola==NULL|nombre==NULL|strlen(nombre)>MAX_NAME_LEN|edad==NULL){
+        return false;
+    }
+
+    struct Paciente *nuevoPaciente=(struct Paciente *)malloc(sizeof(struct Paciente));
+    if(nuevoPaciente==NULL){
+        return false;
+    }
+    strncpy(nuevoPaciente->nombre,nombre,MAX_NAME_LEN);
+    nuevoPaciente->nombre[MAX_NAME_LEN]='\0';
+    nuevoPaciente->edad=edad;
+
+    struct Nodo *nuevoNodo=(struct Nodo *)malloc(sizeof(struct Nodo));
+    if(nuevoNodo==NULL){
+        free(nuevoPaciente);
+        return false;
+    }
+
+    nuevoNodo->persona=nuevoPaciente;
+    nuevoNodo->siguiente=NULL;
+
+    if(ptrCola->tam==0){
+        ptrCola->ultimo=nuevoPaciente;
+    }else{
+        ptrCola->ultimo->siguiente=nuevoNodo;
+        ptrCola->ultimo=nuevoNodo;
+    }
+   
+
+
+    
+    ptrCola->tam++;
+    return true;
+};
 
 /**
-* @brief RRecorre la cola mostrando todos los pacientes, uno por linea,
+* @brief Recorre la cola mostrando todos los pacientes, uno por linea,
 mostrando su nombre y edad y posición en la lista. En caso de no estar
 inicializada, saca el mensaje, Cola no inicializada. En caso de estar
 vacía, Cola vacía.
@@ -75,7 +117,26 @@ vacía, Cola vacía.
 NULL si no ha sido inicializada, esto lo debe garantizar el que usa esta
 librería.
 */
-void mostrarCola(const struct Cola* ptrCola);
+void mostrarCola(const struct Cola* ptrCola){
+    if(ptrCola==NULL){
+        printf("Cola no inicializada\n");
+        return;
+    }
+
+    if(ptrCola->tam==0){
+        printf("Cola vacia\n");
+        return;
+    }
+
+    struct Nodo *actual=ptrCola->primero;
+    unsigned index=1;
+    while(actual!=NULL){
+        printf("Orden %u: %s, %u\n",index,actual->persona->nombre,actual->persona->edad);
+        actual=actual->siguiente;
+        index++;
+    }
+    
+};
 
 /**
 * @brief Elimina al primer paciente de la cola.
@@ -85,7 +146,28 @@ librería.
 * @return true si se ha podido desencolar, en otro caso false (por
 ejemplo cola sin inicializar)
 */
-bool desencolar(struct Cola* ptrCola);
+bool desencolar(struct Cola* ptrCola){
+    if(ptrCola==NULL){
+        return false;
+    }
+    if(ptrCola->tam==0){
+        return false;
+    }  
+
+    struct Nodo *aux=ptrCola->primero;
+
+    ptrCola->primero=ptrCola->primero->siguiente;
+
+    free(aux->persona);
+    free(aux);
+    ptrCola->tam--;
+
+    if(ptrCola->tam==0){
+        ptrCola->ultimo=NULL;
+    }
+    return true;
+
+};
 
 /**
 * @brief Devuelve una COPIA del primer paciente. El que invoca la función
@@ -98,7 +180,23 @@ datos de primer paciente. Devuelve NULL cuando no se puede devolver el
 primer paciente (por ejemplo cola no inicializada, sin elementos, o no se
 puede reservar memoria para la copia).
 */
-struct Paciente * primero(const struct Cola* ptrCola);
+struct Paciente * primero(const struct Cola* ptrCola){
+if(ptrCola==NULL){
+    return NULL;
+}
+if(ptrCola->tam==0){
+    return NULL;
+}
+
+struct Paciente *copiaPrimero=(struct Paciente*)malloc(sizeof(struct Paciente));
+if(copiaPrimero==NULL){
+    return NULL;
+}
+strncpy(copiaPrimero->nombre,ptrCola->primero->persona->nombre,MAX_NAME_LEN);
+copiaPrimero->nombre[MAX_NAME_LEN]='\0';
+copiaPrimero->edad=ptrCola->primero->persona->edad;
+return copiaPrimero;
+};
 
 /**
 * @brief Libera todos los nodos de la cola y la cola. En caso de no poder
@@ -108,4 +206,6 @@ liberar, no hace nada.
 que está la struct Cola. *ptrPtrCola debe valer NULL si no ha sido
 inicializada, esto lo debe garantizar el que usa esta librería.
 */
-void liberarCola(struct Cola** ptrPtrCola);
+void liberarCola(struct Cola** ptrPtrCola){
+
+};
