@@ -73,7 +73,7 @@ longitud es superior a MAX_NAME_LEN, no se encola y se devuelve false.
 cola sin inicializar o parámetros incorrectos.
 */
 bool encolar(struct Cola* ptrCola, char * nombre, unsigned edad){
-    if(ptrCola==NULL|nombre==NULL|strlen(nombre)>MAX_NAME_LEN|edad==NULL){
+    if(ptrCola==NULL||nombre==NULL||strlen(nombre)>MAX_NAME_LEN){
         return false;
     }
 
@@ -95,7 +95,8 @@ bool encolar(struct Cola* ptrCola, char * nombre, unsigned edad){
     nuevoNodo->siguiente=NULL;
 
     if(ptrCola->tam==0){
-        ptrCola->ultimo=nuevoPaciente;
+        ptrCola->primero=nuevoNodo;
+        ptrCola->ultimo=nuevoNodo;
     }else{
         ptrCola->ultimo->siguiente=nuevoNodo;
         ptrCola->ultimo=nuevoNodo;
@@ -207,5 +208,22 @@ que está la struct Cola. *ptrPtrCola debe valer NULL si no ha sido
 inicializada, esto lo debe garantizar el que usa esta librería.
 */
 void liberarCola(struct Cola** ptrPtrCola){
+    if(ptrPtrCola==NULL || *ptrPtrCola==NULL){
+        return;
+    }
+    struct Cola *ptrCola=*ptrPtrCola;
+    struct Nodo *actual=ptrCola->primero;
+    struct Nodo *siguiente;
+
+    while(actual!=NULL){
+        siguiente=actual->siguiente;
+        if(actual->persona !=NULL){
+            free(actual->persona);
+            actual->persona=NULL;
+        }
+        free(actual);
+        actual=siguiente;
+    }
+    free(ptrCola);
 
 };
