@@ -1,0 +1,23 @@
+# Compiled output files (executables and object files)
+
+# Executable files (common names/patterns)
+*.exe
+a.out
+out
+app
+build/
+
+# Object files
+*.o
+
+# Static libraries
+*.a
+
+# Dynamic/Shared libraries (if your project generates them)
+*.so
+*.dll
+*.dylib
+
+# Debugging/Core dumps
+*.gch
+*.core
