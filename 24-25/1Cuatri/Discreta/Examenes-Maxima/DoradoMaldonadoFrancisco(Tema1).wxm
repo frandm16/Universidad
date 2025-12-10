@@ -1,5 +1,5 @@
 /* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
-/* [ Created with wxMaxima version 24.08.0_DevelopmentSnapshot ] */
+/* [ Created with wxMaxima version 25.04.0 ] */
 /* [wxMaxima: comment start ]
 1.Para codificar un mensaje, DIoni y Angeles del grupo Camela utilizan el sistema RSA con p=37, q=43 y clave publica e= 13 para Dioni(4pts)
    [wxMaxima: comment end   ] */
@@ -177,4 +177,4 @@ mod(987674321,19);
 
 
 /* Old versions of Maxima abort on loading files that end in a comment. */
-"Created with wxMaxima 24.08.0_DevelopmentSnapshot"$
+"Created with wxMaxima 25.04.0"$
