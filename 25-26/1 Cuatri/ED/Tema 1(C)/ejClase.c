@@ -37,6 +37,30 @@ void eliminarDuplicados1(Lista *l){
     }
 }
 
+void eliminarDuplicadosMio(Lista *l){
+    pNodo primero,anterior,actual;
+    primero=l->pri;
+    if(primero==NULL){
+        return;
+    }
+    anterior=primero;
+    actual=primero->sig;
+    while(actual!=NULL){
+       // ant=l->pri;         //Problema
+       // act=ant->sig;       //Problema
+       
+            if(actual->dato==primero->dato){
+                anterior->sig=actual->sig;
+                free(actual);
+                actual=anterior->sig; //ya que si hacemos free, se nos queda act colgado y no podemos ejecutar las lineas 36,37
+            }else{
+            anterior=actual;
+            actual=actual->sig;
+            }
+    }
+    
+}
+
 void eliminarValores(pNodo* l, int v){
     pNodo ant,act;
     ant=NULL;
