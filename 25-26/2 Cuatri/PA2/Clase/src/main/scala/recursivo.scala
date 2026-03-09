@@ -33,3 +33,12 @@ class recursivo:
         case Nil => l2
         case h :: t => aux(t, l2 :+ f(h))
     aux(l, List())
+
+//en el foldLeft, el acumulador se pone al valor entre paréntesis, y x, toma el valor de cada posición
+//multiplica todos los elementos de la lista, si se pone foldLeft(0), da 0
+  val productoElementos = List(1,2,3,4).foldLeft(1)((acc,x) => acc * x)
+
+  //devuelve el número de elementos de la lista
+  val numeroDeElementos = List(1,2,3,4).foldLeft(0)((acc,_) => acc +1)
+
+  val invertirLista = List(1,2,3,4).foldLeft(Nil)((acc,x) => x::acc)
