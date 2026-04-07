@@ -52,7 +52,8 @@ class SimpleSet[T] private(private val elems: List[T]) extends ImmutableSet[T] {
     SimpleSet(elems.filter(other.elems.contains))
 
   def difference(other: SimpleSet[T]): SimpleSet[T] =
-    SimpleSet(elems.foldLeft(List[T]())((acc, elem) => if (other.contains(elem)) acc else elem :: acc))
+    SimpleSet(elems.foldLeft(List[T]())((acc, elem) =>
+      if (other.contains(elem)) acc else elem :: acc))
 }
 
 @main def testSimpleSet(): Unit = {
