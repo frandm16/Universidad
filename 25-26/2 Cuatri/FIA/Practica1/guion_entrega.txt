@@ -1,0 +1,25 @@
+Francisco Dorado Maldonado
+Ing. Informática
+Grupo A
+
+Mini Proyecto: Detección de bordes en imágenes
+
+Este programa carga una imagen en color y la convierte a escala de grises.
+A continuación calcula las diferencias de intensidad entre píxeles contiguos
+en horizontal y en vertical para detectar cambios bruscos en la imagen.
+
+Con esas diferencias se calcula la magnitud del gradiente en cada píxel,
+que representa la intensidad del cambio. Después se aplica un umbral
+(lo he dejado en 0.2, pero se puede ajustar) para obtener una imagen
+binaria de bordes, donde los píxeles True indican zonas en las que hay
+un cambio notable de intensidad.
+
+He dejado varias imágenes para poder probar. Para cambiarlas simplemente
+hay que modificar el nombre de imagen_path por el del archivo nuevo.
+
+Salida del programa:
+- Imagen Original: imagen convertida a escala de grises.
+- Diferencias eje X: cambios de intensidad entre píxeles contiguos en horizontal.
+- Diferencias eje Y: cambios de intensidad entre píxeles contiguos en vertical.
+- Magnitud del gradiente: intensidad total del cambio combinando ambos ejes.
+- Resultado final: imagen binaria con los bordes detectados.
