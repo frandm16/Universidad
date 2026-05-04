@@ -1,0 +1,533 @@
+import pandas as pd
+
+Series: arrays de 1 dimensión
+
+DataFrame: arrays de 2 dimensiones
+
+Cada elemento puede ser a su vez un array, con lo cual se pueden tratar estructuras multidimensionales.
+
+Principales diferencias con los arrays de Numpy
+
+- Se permite asignar etiquetas a filas y columnas (Numpy usa índices numéricos)
+
+- Permite datos heterogéneos
+
+
+arr = np.array([10, 20, 30])
+
+print(arr[1])
+
+
+serie = pd.Series(["Javier", 27, 1.96], index=["Nombre", "Edad", "Altura"])
+
+print(serie["Altura"])
+
+royals = pd.DataFrame({
+
+    "Nombre": ["Charles", "Camilla", "William", "Kate"],
+
+    "Edad": [76, 62, 45, 45],
+
+    "Altura": [1.72, 1.81, 2.05, np.nan], #NaN es de Numpy
+
+"Salario": [6000, 5000, 4000, 3000]
+
+})
+
+print(royals["Nombre"])
+
+
+- Funciones avanzadas para filtros/agrupamiento/fusión/transformación
+
+
+print(royals["Edad"]>50)
+
+- Tratamiento de datos inexistentes (NaN)
+
+
+print(royals.dropna())
+
+- Funciones tipo SQL (groupBy, merge, join)
+
+
+print(royals.groupby("Edad")["Salario"].mean())
+
+- Carga de CSV, Excel, JSON, SQL, ... (Numpy solo TXT)
+
+
+- Entonces, ¿dejamos de usar Numpy? No, porque en general:
+
+* es más eficiente en cálculos numéricos
+
+* es más eficiente en el uso de memoria (Pandas: sobrecarga etiquetas, NaN, datos heterogéneos)
+
+* mejor tratamiento de arrays multidimensionales
+
+SERIES
+
+Arrays unidimensionales.
+
+Se pueden crear directamente o a partir de un diccionario
+
+
+#Inicializamos serie
+
+miFinDeSemana=pd.Series(25,index=["sabado","domingo"])
+
+print(miFinDeSemana)
+
+
+miDiccTemp = {"lunes": 32, "martes": 31, "miércoles": 30, "jueves": 31, "viernes": 29, "sábado": 27, "domingo": 26}
+
+tempSemana = pd.Series(miDiccTemp)
+
+print(tempSemana)
+
+tempFinDeSemana = pd.Series(miDiccTemp, index = ["sábado", "domingo"])
+
+print(tempFinDeSemana)
+
+Importante: al operarlas las series se alinean por etiqueta, los arrays por posición
+
+
+ventasSemana1 = pd.Series({"lunes": 32, "martes": 31, "miércoles": 30})
+
+ventasSemana2 = pd.Series({"martes": 31, "miércoles": 32, "lunes": 30, "jueves": 27})
+
+print (ventasSemana1 + ventasSemana2)
+
+
+DATAFRAMES
+
+Arrays bidimensionales
+
+diccDatos = {
+
+  "calorias": [420, 380, 390],
+
+  "tiempoEjercicio": [50, 40, 45]
+
+}
+
+miDF = pd.DataFrame(diccDatos)
+
+
+print(miDF.loc[0])
+
+print(miDF.loc[[0, 1]])
+
+
+miDF2 = pd.DataFrame(diccDatos, index = ["viernes", "sábado", "domingo"])
+
+print(miDF2.loc["sábado"])
+
+
+print("calorias" in miDF2)
+
+print("tiempo" in miDF2)
+
+
+# Mostrar todas las filas y columnas
+
+pd.set_option('display.max_rows', None)  # Muestra todas las filas
+
+pd.set_option('display.max_columns', None)  # Muestra todas las columnas
+
+# No "cortar" las celdas
+
+pd.set_option('display.expand_frame_repr', False)
+
+
+#cambia valor de columna tiempoEjercicio en fila 2
+
+miDF.loc[2, 'tiempoEjercicio'] = 35
+
+
+#elimina fila x sobre DF original
+
+miDF.drop(1, inplace = True)
+
+
+df1 = pd.DataFrame({'A': [0, 0], 'B': [4, 4]})
+
+df2 = pd.DataFrame({'A': [1, 1], 'B': [3, 3]})
+
+funcion = lambda s1,s2: s1+s2*4
+
+df1.combine(df2,funcion)
+
+
+pd.options.display.max_rows = 9999
+
+ruta = r'C:\Users\jcoego\Desktop\compras_online.csv'
+
+miDF = pd.read_csv(ruta)
+
+print(miDF.head(10))
+
+print(miDF.tail()) 
+
+print(miDF.info()) 
+
+
+# Convertir los valores del campo 'A' a enteros, excepto los NaN
+
+miDF['anyo'] = miDF['anyo'].where(miDF['anyo'].isna(), miDF['anyo'].astype('Int64'))
+
+
+# Configurar pandas para mostrar enteros sin decimales
+
+# Aunque el año se almacena como entero, pandas lo muestra en punto flotante
+
+pd.set_option('display.float_format', '{:.0f}'.format)
+
+
+df = pd.DataFrame({'equipo': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],
+
+   'tiros': [32, 26, 31, 58, 14, 27, 31, 33],
+
+                   'puntos': [18, 22, 19, 14, 14, 11, 20, 28],
+
+                   'asistencias': [5, 7, 7, 9, 12, 9, 9, 4],
+
+                   'rebounds': [11, 8, 10, 6, 6, 5, 9, 12]})
+
+
+#renombrado columnas
+
+df.rename(columns = {'rebounds':'rebotes'}, inplace = True)
+
+
+#crear nueva columna
+
+df['acierto'] = df['puntos']/df['tiros']
+
+
+#Filtrado con máscara
+
+mascara = pd.Series([True, False, True, True, False, False, False, True])
+
+print(df[mascara.values]) #Devuelve solo filas asociadas a True
+
+(df["puntos"][mascara.values]) #Devuelve solo valor "puntos" en filas asociadas a True
+
+
+Slicing. Indexado. Ordenación
+
+
+# Reordenación manteniendo índices
+
+print(df)
+
+df.sort_values(by="puntos", ascending=False, inplace=True)
+
+print(df)
+
+
+# Reasignamos índices
+
+df.reset_index(drop=True, inplace=True)
+
+print(df)
+
+
+print(df["puntos"] > 15) #Devuelve máscara para filtrado
+
+print(df[df["puntos"] > 15]) #Datos filtrados
+
+
+# Localizar filas por índice y por posición
+
+print(df.loc[1])  # Fila con índice 1
+
+print(df.iloc[1]) # Fila i-ésima
+
+
+#Pone a null columna rebotes de filas 2-5
+
+df.loc[2:5,'rebotes'] = None
+
+
+#Filas de 0 a la 2
+
+print(df[df.index.isin(range(0,3))])
+
+
+# Recuperar filas
+
+print(df.loc[1]) #Serie
+
+print(df[df.index==1]) #Dataframe
+
+
+print(df.loc[1:4])
+
+print(df.loc[[1, 3, 5]])
+
+print(df.loc[1:3, ['equipo', 'asistencias', 'rebotes']])
+
+print(df.iloc[1:4, :3])
+
+print(df.loc[3:, ['equipo', 'asistencias', 'rebotes']])
+
+#filas y columnas
+
+df.iloc[2:, :3]
+
+
+# Igual que en cadenas, listas, ...
+
+print(df[5:1:-1])
+
+
+# Localicar por valores
+
+print(df.nlargest(3,'rebotes'))
+
+print(df.nsmallest(2,'puntos'))
+
+
+LIMPIEZA DE DATOS
+
+
+ruta = r'C:\Users\username\Desktop\compras_online.csv'
+
+miDF = pd.read_csv(ruta)
+
+
+# Localización de elementos nulos
+
+miDF.isnull()
+
+miDF.isnull().sum()  #Número de valores nulos por columna 
+
+miDF.isnull().sum().sum()   #Número de valores nulos totales
+
+
+# Borrado de NA
+
+
+print("DF sin filtrar: ", len(miDF))
+
+miDFFiltrado = miDF.dropna()
+
+print("DF sin NA: ", len(miDFFiltrado))    # parámetro inplace=True cambia DF original
+
+miDFFiltradoCampo = miDF.dropna(subset=['tipoUsuario'])
+
+print("DF sin NA en tipoUsuario: ", len(miDFFiltradoCampo))
+
+
+# Relleno de valores
+
+
+# Ojo, el nuevo DF solo contiene una columna
+
+miDFRellenoCampo = miDF["comunidadAutonoma"].fillna("CA sin determinar")
+
+print(miDFRellenoCampo.head())
+
+
+#Si no se especifica columna, sustituye todos los NA de todas las columnas
+
+
+#Solución 1. Hacer una copia
+
+miDFCopia = miDF.copy()
+
+miDFCopia["comunidadAutonoma"] = miDFCopia["comunidadAutonoma"].fillna("CA sin determinar")
+
+
+#Solución 2. Hacer los cambios directamente sobre el DF original
+
+miDF["comunidadAutonoma"].fillna("CA sin determinar", inplace=True)
+
+
+# También se puede sustituir por valores calculados (p.ej. la moda o la media)
+
+# Los NA no se tienen en cuenta para el cómputo
+
+# Si hay valores no compatibles en la columna (p.ej. cadena), da error
+
+Si hay valores no compatibles (p.ej. string), falla.
+
+miDF["importe"].fillna(miDF["importe"].mean(), inplace=True)
+
+
+# Corrección de valores
+
+#Intentar convertir valores
+
+df['Fecha'] = pd.to_datetime(df['Fecha'])
+
+
+# Tratamiento de duplicados
+
+estudiantes = {
+
+    "id": [1, 2, 3, 4, 5, 3, 6, 7, 8, 5],
+
+    "Nombre": ["Ana", "Luis", "Carlos", "Elena", "Juan", "Carlos", "Marta", "Ana", "Pablo", "Juan"],
+
+    "Edad": [20, 21, 22, 20, 23, 22, 24, 21, 22, 23],
+
+    "Calificación": [8.5, 9.0, 7.8, 8.8, 9.2, 7.8, 9.5, 8.9, 7.6, 9.2]
+
+}
+
+
+miClase = pd.DataFrame(estudiantes)
+
+#Devuelve 1 valor booleano por cada fila indicando si está duplicada.
+
+#La primera ocurrencia vale False
+
+print(miClase.duplicated())
+
+
+miClaseSinDuplicados = miClase.drop_duplicates()   # opción: inplace=True
+
+print(miClaseSinDuplicados)
+
+
+
+# Importación y exportación de datos
+
+
+miDFXLS = pd.read_excel('datosVentas.xlsx', sheet_name=1)
+
+conBBDD = sqlite3.connect("miBBDD.db")
+
+miDFBD = pd.read_sql("SELECT * FROM tabla", conBBDD)
+
+miDFJSON = pd.read_json("https://api.example.com/data.json")
+
+df.to_csv('datosVentas.txt', header=df.columns, index=None, sep=' ')
+
+
+# Análisis de datos
+
+
+nRegistros=1000
+
+columnaOriginal = np.random.randint(1,1000,nRegistros)
+
+columnaCorrPos = 3 * columnaOriginal + 5
+
+columnaCorrNeg = -1 * columnaOriginal + 10
+
+columnaCorrPosTotal = columnaOriginal
+
+columnaCorrNegTotal = -1 * columnaOriginal
+
+columnaCorrNula = np.sin(columnaOriginal)
+
+columnaAleatoria1 = np.random.randint(1,1000,nRegistros)
+
+columnaAleatoria2 = np.random.randint(1,1000,nRegistros)
+
+
+misDatos = {
+
+'CorrelacionNegativaTotal': columnaCorrNegTotal,
+
+'CorrelacionNegativa': columnaCorrNeg,
+
+'CorrelacionAleatoriaNegativa': columnaAleatoria1,
+
+'CorrelacionNula': columnaCorrNula,
+
+'ORIGINAL': columnaOriginal,
+
+'CorrelacionAleatoriaPositiva': columnaAleatoria2,
+
+'CorrelacionPositiva': columnaCorrPos,
+
+'CorrelacionPositivaTotal': columnaCorrPosTotal
+
+}
+
+
+miCorr = pd.DataFrame(misDatos)
+
+miCorr.corr()
+
+
+#Medidas estadísticas de columnas numéricas
+
+print(miCorr.describe())
+
+print(miCorr.describe(percentiles=[0.3, 0.5, 0.7]))
+
+print(miCorr.describe(include=[int]))
+
+print(miCorr.describe(exclude=[int]))
+
+print(miCorr.describe().T)
+
+print(miCorr.columns) #equivalente a list(df.columns)
+
+
+
+# Pruebas con BBDD compras
+
+# Número de registros con agrupación por uno o varios campos
+
+print(df['comunidadAutonoma'].value_counts())
+
+print(df['comunidadAutonoma'].value_counts(normalize=True))
+
+
+print(df.value_counts(subset=['comunidadAutonoma', 'tipoCompra']))
+
+
+# Medidas estadísticas con agrupación
+
+print(df.groupby('comunidadAutonoma')['importe'].mean())
+
+print(df.groupby(['comunidadAutonoma','tipoCompra'])['importe'].mean())
+
+
+#¡¡OJO!! Cuidado con los groupby y los índices
+
+# Los índices no tienen porque ser valores numéricos
+
+
+data = {'X': [10, 20, 30, 40], 'Y': [1, 2, 1, 2]}
+
+df = pd.DataFrame(data)
+
+agrupado = df.groupby('Y')['X'].mean()
+
+print(agrupado[2]) # ¿Por qué no da error si el dataframe tiene solo dos filas (la 0 y la 1)?
+
+print(agrupado)
+
+
+# Porque lo que se le pasa es el valor del índice, no la posición de la fila a imprimir
+
+# Al agrupar (groupby) el índice pasa a ser el conjunto de valores únicos de la columna usada para agrupar
+
+
+data = {'X': [10, 20, 30, 40], 'Y': ["uno", "dos", "uno", "dos"]}
+
+df = pd.DataFrame(data)
+
+agrupado = df.groupby('Y')['X'].mean()
+
+print(agrupado["dos"])
+
+print(agrupado)
+
+
+TABLAS PIVOTE
+
+
+# Importes por C.A. y año
+
+print(pd.pivot_table(df, values="importe", index="comunidadAutonoma", columns="anyo", aggfunc="sum"))
+
+
+# Sumya y media de importes por tipoUsuario, tipoCompra y año filtrado para año>2020
+
+print(pd.pivot_table(df[df['anyo']>2020], values="importe", index=["tipoUsuario", "tipoCompra"], columns="anyo", aggfunc=["sum","mean"]))
