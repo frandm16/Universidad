@@ -9,6 +9,7 @@ El programa debe garantizar la sincronización entre los cardenales para evitar 
 carrera y asegurar que los votos se procesen correctamente. Los cardenales deben esperar a que
 todos terminen de votar antes de iniciar una nueva ronda.
 */
+import control_2.{log, thread}
 import java.util.concurrent._
 import scala.util.Random
 
@@ -18,12 +19,31 @@ object conclave {
   var ganador: Option[Int] = None
   private val votos = scala.collection.mutable.Map[Int,Int]()
   private var votacion = 0
+
+  private val esperaVotacion = new Semaphore(1)
+  private val esperaFinVotacion = new Semaphore(0)
   // ...
 
-  def vota(i: Int) =
+  def vota(i: Int) = {
     // ...
-    log(s"Votación ${votacion}, gana el candidato ${ganador.get} con ${votos(ganador.get)} votos")
-    // ...
+    esperaVotacion.acquire()
+    votos(i) = votos.getOrElse(i, 0)+1
+
+    if (votos.values.sum < numCardenales)
+      esperaVotacion.release()
+      esperaFinVotacion.acquire()
+    else
+      ganador = Some(votos.maxBy(_._2)._1)
+      log(s"Votación ${votacion}, gana el candidato ${ganador.get} con ${votos(ganador.get)} votos")
+      if (votos(ganador.get) > numCardenales / 2)
+        fumata_blanca = true
+      else
+        votos.clear()
+        votacion += 1
+      esperaFinVotacion.release(numCardenales-1)
+      esperaVotacion.release()
+  }
+  // ...
 }
 
 @main def main =
