@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ScalaCompilerConfiguration">
+    <option name="separateProdTestSources" value="true" />
+    <profile name="sbt 1" modules="conv2-2025,conv2-2025-root,conv2-2025-root.conv2-2025,conv2-2025-root.conv2-2025.main,conv2-2025-root.conv2-2025.test,conv2-2025-root.main,conv2-2025-root.test,conv2-2025.main,conv2-2025.test" />
+  </component>
+</project>
